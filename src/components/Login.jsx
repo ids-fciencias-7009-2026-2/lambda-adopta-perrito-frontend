@@ -23,7 +23,6 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
 
-
         sessionStorage.setItem('token', data.token);
 
         navigate('/home');
@@ -60,8 +59,18 @@ const Login = () => {
         </button>
       </form>
 
-
       {error && <p style={{ color: 'red', marginTop: '15px' }}>{error}</p>}
+
+
+      <p style={{ marginTop: '20px' }}>
+        ¿No tienes cuenta?{' '}
+        <span
+          onClick={() => navigate('/register')}
+          style={{ color: 'cyan', cursor: 'pointer', textDecoration: 'underline' }}
+        >
+          Regístrate aquí
+        </span>
+      </p>
     </div>
   );
 };
