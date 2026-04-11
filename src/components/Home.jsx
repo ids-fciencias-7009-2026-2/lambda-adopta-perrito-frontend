@@ -16,9 +16,22 @@ const Home = () => {
     }
   }, [navigate]);
 
-  const handleLogout = () => {
-    sessionStorage.removeItem('token');
-    navigate('/login');
+  const handleLogout = async () => {
+    const token = sessionStorage.getItem('token');
+
+    try {
+      await fetch('http://localhost:8080/usuarios/logout', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+    } catch (err) {
+      console.error('Error al cerrar sesión en el servidor:', err);
+    } finally {
+      sessionStorage.removeItem('token');
+      navigate('/login');
+    }
   };
 
   return (
