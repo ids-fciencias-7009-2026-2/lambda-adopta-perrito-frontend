@@ -4,6 +4,7 @@ import Home from './components/Home';
 import EditarPerfil from './components/EditarPerfil';
 import Register from './components/Register';
 import Perfil from './components/Perfil';
+import BuscarMascotas from './components/BuscarMascotas';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
 
         {/* Ruta del Perfil */}
         <Route path="/perfil" element={<Perfil />} />
+
+        {/* Ruta para buscar mascotas con filtros */}
+        <Route path="/buscar" element={<BuscarMascotas />} />
 
         {/* Redirección por defecto: si entran a la raíz (/), mandarlos al login */}
         <Route path="*" element={<Navigate to="/login" replace />} />

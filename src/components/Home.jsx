@@ -40,6 +40,7 @@ const Home = () => {
         <h1>🐾 Adopta un Perrito</h1>
         <nav>
           <button onClick={() => navigate('/perfil')}>Ver Mi Perfil</button> |
+          <button onClick={() => navigate('/buscar')} style={{ marginLeft: '10px' }}>Buscar Mascotas</button> |
           <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
             Cerrar Sesión
           </button>
