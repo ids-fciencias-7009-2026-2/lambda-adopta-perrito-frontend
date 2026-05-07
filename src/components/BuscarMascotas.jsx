@@ -122,12 +122,22 @@ const BuscarMascotas = () => {
 
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '30px', flexWrap: 'wrap' }}>
                     {animales.map((animal) => (
-                        <div key={animal.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', minWidth: '200px' }}>
-                            <h3>{animal.nombre}</h3>
-                            <p><strong>Especie:</strong> {animal.especie}</p>
-                            <p><strong>Raza:</strong> {animal.raza || 'Mestizo'}</p>
-                            <p><strong>CP:</strong> {animal.codigoPostal}</p>
-                            <button style={{ marginTop: '10px', backgroundColor: '#4CAF50', color: 'white', border: 'none', padding: '8px', cursor: 'pointer', borderRadius: '4px' }}>
+                        <div key={animal.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', minWidth: '200px', maxWidth: '250px' }}>
+
+                            {/* Aquí agregamos la foto */}
+                            {animal.fotoUrl && (
+                                <img
+                                    src={animal.fotoUrl}
+                                    alt={`Foto de ${animal.nombre}`}
+                                    style={{ width: '100%', height: '180px', objectFit: 'cover', borderRadius: '8px', marginBottom: '10px' }}
+                                />
+                            )}
+
+                            <h3 style={{ margin: '5px 0' }}>{animal.nombre}</h3>
+                            <p style={{ margin: '5px 0' }}><strong>Especie:</strong> {animal.especie}</p>
+                            <p style={{ margin: '5px 0' }}><strong>Raza:</strong> {animal.raza || 'Mestizo'}</p>
+                            <p style={{ margin: '5px 0' }}><strong>CP:</strong> {animal.codigoPostal}</p>
+                            <button style={{ width: '100%', marginTop: '10px', backgroundColor: '#4CAF50', color: 'white', border: 'none', padding: '8px', cursor: 'pointer', borderRadius: '4px' }}>
                                 Estoy Interesado
                             </button>
                         </div>
