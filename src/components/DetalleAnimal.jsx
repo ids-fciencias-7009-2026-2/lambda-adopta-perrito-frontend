@@ -8,6 +8,7 @@ const DetalleAnimal = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const esAdmin = sessionStorage.getItem('rol') === 'ADMIN';
+    const [correoContacto, setCorreoContacto] = useState(''); 
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
@@ -81,6 +82,25 @@ const DetalleAnimal = () => {
         }
     };
 
+    const handleInteres = async () => {
+    const token = sessionStorage.getItem('token');
+    try {
+        const response = await fetch(`http://localhost:8080/api/animales/${id}/contacto`, {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            setCorreoContacto(data.correo); // Guardamos el correo recibido del backend
+        } else {
+            setError('No se pudo obtener la información de contacto.');
+        }
+    } catch (err) {
+        setError('No se pudo conectar con el servidor.');
+    }
+    };
+
     if (loading) return <p style={{ textAlign: 'center', marginTop: '50px' }}>Cargando...</p>;
     if (error) return <p style={{ textAlign: 'center', color: 'red', marginTop: '50px' }}>{error}</p>;
 
@@ -109,6 +129,27 @@ const DetalleAnimal = () => {
                     {animal.estado}
                 </span>
             </p>
+            
+            {/* Sección para usuarios adoptantes (No Admins) */}
+            {!esAdmin && animal.estado !== 'ADOPTADO' && (
+                <div style={{ marginTop: '20px' }}>
+                    {!correoContacto ? (
+                        <button
+                            onClick={handleInteres}
+                            style={{ backgroundColor: '#4CAF50', color: 'white', border: 'none', padding: '12px 20px', cursor: 'pointer', borderRadius: '4px', fontSize: '16px', width: '100%' }}
+                        >
+                            🐾 Estoy Interesado
+                        </button>
+                    ) : (
+                        <div style={{ backgroundColor: '#e8f5e9', padding: '15px', borderRadius: '8px', border: '1px solid #4CAF50' }}>
+                            <p style={{ margin: 0, color: '#2e7d32', fontWeight: 'bold' }}>
+                                ¡Genial! Ponte en contacto con el dueño:
+                            </p>
+                            <p style={{ fontSize: '18px', marginTop: '10px' }}>{correoContacto}</p>
+                        </div>
+                    )}
+                </div>
+            )}
 
             {/* --- SECCIÓN DEL MAPA (Añadida) --- */}
             {animal.codigoPostal && (
