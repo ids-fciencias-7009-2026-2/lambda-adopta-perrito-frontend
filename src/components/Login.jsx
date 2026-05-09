@@ -5,7 +5,6 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -22,8 +21,17 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
-
         sessionStorage.setItem('token', data.token);
+
+        // Obtenemos los datos del usuario para guardar el rol
+        const meResponse = await fetch('http://localhost:8080/usuarios/me', {
+          headers: { 'Authorization': `Bearer ${data.token}` }
+        });
+
+        if (meResponse.ok) {
+          const usuario = await meResponse.json();
+          sessionStorage.setItem('rol', usuario.rol);
+        }
 
         navigate('/home');
       } else {
@@ -35,43 +43,39 @@ const Login = () => {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '50px auto', textAlign: 'center' }}>
-      <h1>Adopta un Perrito 🐾</h1>
-      <h3>Iniciar Sesión</h3>
-
-      <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        <input
-          type="email"
-          placeholder="Tu correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Tu contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit" style={{ cursor: 'pointer', padding: '10px' }}>
-          Ingresar
-        </button>
-      </form>
-
-      {error && <p style={{ color: 'red', marginTop: '15px' }}>{error}</p>}
-
-
-      <p style={{ marginTop: '20px' }}>
-        ¿No tienes cuenta?{' '}
-        <span
-          onClick={() => navigate('/register')}
-          style={{ color: 'cyan', cursor: 'pointer', textDecoration: 'underline' }}
-        >
+      <div style={{ maxWidth: '400px', margin: '50px auto', textAlign: 'center' }}>
+        <h1>Adopta un Perrito 🐾</h1>
+        <h3>Iniciar Sesión</h3>
+        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <input
+              type="email"
+              placeholder="Tu correo electrónico"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+          />
+          <input
+              type="password"
+              placeholder="Tu contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+          />
+          <button type="submit" style={{ cursor: 'pointer', padding: '10px' }}>
+            Ingresar
+          </button>
+        </form>
+        {error && <p style={{ color: 'red', marginTop: '15px' }}>{error}</p>}
+        <p style={{ marginTop: '20px' }}>
+          ¿No tienes cuenta?{' '}
+          <span
+              onClick={() => navigate('/register')}
+              style={{ color: 'cyan', cursor: 'pointer', textDecoration: 'underline' }}
+          >
           Regístrate aquí
         </span>
-      </p>
-    </div>
+        </p>
+      </div>
   );
 };
 
