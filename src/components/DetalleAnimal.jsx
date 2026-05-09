@@ -110,6 +110,23 @@ const DetalleAnimal = () => {
                 </span>
             </p>
 
+            {/* --- SECCIÓN DEL MAPA (Añadida) --- */}
+            {animal.codigoPostal && (
+                <div style={{ marginTop: '30px', marginBottom: '20px' }}>
+                    <h3 style={{ fontSize: '1.2rem', marginBottom: '10px' }}>Ubicación Aproximada</h3>
+                    <iframe
+                        title="Mapa de ubicación"
+                        width="100%"
+                        height="250"
+                        style={{ border: 0, borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
+                        loading="lazy"
+                        allowFullScreen
+                        // Aquí usamos el código postal para buscar en el mapa
+                        src={`https://maps.google.com/maps?q=${animal.codigoPostal}&output=embed`}
+                    ></iframe>
+                </div>
+            )}
+
             {esAdmin && (
                 <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     {animal.estado !== 'ADOPTADO' && (
