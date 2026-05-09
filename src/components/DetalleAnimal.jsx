@@ -8,7 +8,7 @@ const DetalleAnimal = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const esAdmin = sessionStorage.getItem('rol') === 'ADMIN';
-    const [correoContacto, setCorreoContacto] = useState(''); 
+    const [correoContacto, setCorreoContacto] = useState('');
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
@@ -83,24 +83,29 @@ const DetalleAnimal = () => {
     };
 
     const handleInteres = async () => {
-    const token = sessionStorage.getItem('token');
-    try {
-        const response = await fetch(`http://localhost:8080/api/animales/${id}/contacto`, {
-            method: 'GET',
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
+        const token = sessionStorage.getItem('token');
+        try {
+            // CAMBIO: Usamos la ruta /contacto y el método GET
+            const response = await fetch(`http://localhost:8080/animales/${id}/contacto`, {
+                method: 'GET', // Antes decía POST
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
 
-        if (response.ok) {
-            const data = await response.json();
-            setCorreoContacto(data.correo); // Guardamos el correo recibido del backend
-        } else {
-            setError('No se pudo obtener la información de contacto.');
+            if (response.ok) {
+                const data = await response.json();
+                // Esto guarda el correo y hace que aparezca el cuadro verde de éxito
+                setCorreoContacto(data.correo || data.email);
+                alert('¡Solicitud enviada! El sistema ha registrado tu interés.');
+            } else {
+                setError('El servidor rechazó la solicitud (Error ' + response.status + ')');
+            }
+        } catch (err) {
+            // Aquí es donde caía antes
+            setError('No se pudo conectar con el servidor. Verifica que Spring Boot esté corriendo.');
         }
-    } catch (err) {
-        setError('No se pudo conectar con el servidor.');
-    }
     };
-
     if (loading) return <p style={{ textAlign: 'center', marginTop: '50px' }}>Cargando...</p>;
     if (error) return <p style={{ textAlign: 'center', color: 'red', marginTop: '50px' }}>{error}</p>;
 
@@ -129,7 +134,7 @@ const DetalleAnimal = () => {
                     {animal.estado}
                 </span>
             </p>
-            
+
             {/* Sección para usuarios adoptantes (No Admins) */}
             {!esAdmin && animal.estado !== 'ADOPTADO' && (
                 <div style={{ marginTop: '20px' }}>
@@ -143,11 +148,29 @@ const DetalleAnimal = () => {
                     ) : (
                         <div style={{ backgroundColor: '#e8f5e9', padding: '15px', borderRadius: '8px', border: '1px solid #4CAF50' }}>
                             <p style={{ margin: 0, color: '#2e7d32', fontWeight: 'bold' }}>
-                                ¡Genial! Ponte en contacto con el dueño:
+                                ¡Solicitud enviada con éxito! 🐾
                             </p>
-                            <p style={{ fontSize: '18px', marginTop: '10px' }}>{correoContacto}</p>
+                            <p style={{ fontSize: '15px', marginTop: '10px', color: '#333' }}>
+                                Le hemos enviado un correo al dueño con tu información. Pronto se pondrán en contacto contigo.
+                            </p>
                         </div>
                     )}
+                </div>
+            )}
+
+            {/* --- SECCIÓN DEL MAPA --- */}
+            {animal.codigoPostal && (
+                <div style={{ marginTop: '30px', marginBottom: '20px' }}>
+                    <h3 style={{ fontSize: '1.2rem', marginBottom: '10px' }}>Ubicación Aproximada</h3>
+                    <iframe
+                        title="Mapa de ubicación"
+                        width="100%"
+                        height="250"
+                        style={{ border: 0, borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
+                        loading="lazy"
+                        allowFullScreen
+                        src={`https://maps.google.com/maps?q=${animal.codigoPostal}&output=embed`}
+                    ></iframe>
                 </div>
             )}
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const BuscarMascotas = () => {
@@ -12,10 +12,47 @@ const BuscarMascotas = () => {
     const [busquedaRealizada, setBusquedaRealizada] = useState(false);
     const esAdmin = sessionStorage.getItem('rol') === 'ADMIN';
 
+    const performSearch = useCallback(async () => {
+            setError('');
+            setLoading(true);
+            setBusquedaRealizada(true);
+
+            const token = sessionStorage.getItem('token');
+            const params = new URLSearchParams();
+            if (especie) params.append('especie', especie);
+            if (raza) params.append('raza', raza);
+            if (codigoPostal) params.append('cp', codigoPostal);
+
+            try {
+                const response = await fetch(`http://localhost:8080/animales/buscar?${params.toString()}`, {
+                    method: 'GET',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setAnimales(data);
+                } else if (response.status === 404) {
+                    setAnimales([]);
+                } else {
+                    setError('Ocurrió un error al buscar las mascotas.');
+                }
+            } catch (err) {
+                setError('No se pudo conectar con el servidor.');
+            } finally {
+                setLoading(false);
+            }
+        }, [especie, raza, codigoPostal]);
+
+
     useEffect(() => {
-        const token = sessionStorage.getItem('token');
-        if (!token) navigate('/login');
-    }, [navigate]);
+            const token = sessionStorage.getItem('token');
+            if (!token) {
+                navigate('/login');
+            } else {
+                performSearch(); //
+            }
+        }, [navigate, performSearch]);
 
     const handleLogout = async () => {
         const token = sessionStorage.getItem('token');
@@ -114,6 +151,7 @@ const BuscarMascotas = () => {
                 <nav>
                     <button onClick={() => navigate('/home')}>Home</button> |
                     <button onClick={() => navigate('/perfil')} style={{ marginLeft: '10px' }}>Ver Mi Perfil</button> |
+                    <button onClick={() => navigate('/agregar-animal')} style={{ marginLeft: '10px' }}>Dar en Adopción</button> |
                     <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
                         Cerrar Sesión
                     </button>
