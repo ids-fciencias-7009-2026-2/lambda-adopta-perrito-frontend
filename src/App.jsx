@@ -7,6 +7,7 @@ import Perfil from './components/Perfil';
 import BuscarMascotas from './components/BuscarMascotas';
 import DetalleAnimal from './components/DetalleAnimal';
 import AgregarAnimal from './components/AgregarAnimal';
+import EditarAnimal from './components/EditarAnimal';
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
 
         {/* Ruta para ver detalle de una mascota */}
         <Route path="/animales/:id" element={<DetalleAnimal />} />
+
+        <Route path="/animales/:id/editar" element={<EditarAnimal />} />
 
        {/* Ruta para agregar mascota */}
         <Route path="/agregar-animal" element={<AgregarAnimal />} />

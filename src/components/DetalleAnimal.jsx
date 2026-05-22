@@ -8,6 +8,7 @@ const DetalleAnimal = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const esAdmin = sessionStorage.getItem('rol') === 'ADMIN';
+    const idUsuarioActual = parseInt(sessionStorage.getItem('idUsuario'));
     const [correoContacto, setCorreoContacto] = useState('');
 
     useEffect(() => {
@@ -174,7 +175,7 @@ const DetalleAnimal = () => {
                 </div>
             )}
 
-            {esAdmin && (
+            {(esAdmin || animal.idUsuario === idUsuarioActual) && (
                 <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     {animal.estado !== 'ADOPTADO' && (
                         <button
@@ -184,6 +185,12 @@ const DetalleAnimal = () => {
                             Marcar como Adoptado
                         </button>
                     )}
+                    <button
+                        onClick={() => navigate(`/animales/${id}/editar`)}
+                        style={{ backgroundColor: '#FF9800', color: 'white', border: 'none', padding: '10px', cursor: 'pointer', borderRadius: '4px' }}
+                    >
+                        Editar Mascota
+                    </button>
                     <button
                         onClick={handleEliminar}
                         style={{ backgroundColor: '#f44336', color: 'white', border: 'none', padding: '10px', cursor: 'pointer', borderRadius: '4px' }}

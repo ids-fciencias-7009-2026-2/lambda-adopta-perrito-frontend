@@ -31,6 +31,7 @@ const Login = () => {
         if (meResponse.ok) {
           const usuario = await meResponse.json();
           sessionStorage.setItem('rol', usuario.rol);
+          sessionStorage.setItem('idUsuario', usuario.id);
         }
 
         navigate('/home');
