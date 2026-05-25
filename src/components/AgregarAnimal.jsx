@@ -8,14 +8,20 @@ const AgregarAnimal = () => {
         especie: 'Perro',
         raza: '',
         descripcion: '',
-        fotoUrl: '',
         codigoPostal: ''
     });
+    const [imagen, setImagen] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleImageChange = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            setImagen(e.target.files[0]);
+        }
     };
 
     const handleLogout = async () => {
@@ -43,14 +49,25 @@ const AgregarAnimal = () => {
 
         const token = sessionStorage.getItem('token');
 
+        const dataToSend = new FormData();
+        dataToSend.append('nombre', formData.nombre);
+        dataToSend.append('especie', formData.especie);
+        dataToSend.append('raza', formData.raza);
+        dataToSend.append('descripcion', formData.descripcion);
+        dataToSend.append('codigoPostal', formData.codigoPostal);
+
+        // Adjuntamos el archivo (el backend deberá buscar el parámetro 'archivoImagen')
+        if (imagen) {
+            dataToSend.append('archivoImagen', imagen);
+        }
+
         try {
             const response = await fetch('http://localhost:8080/animales/agregar', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify(formData)
+                body: dataToSend
             });
 
             if (response.ok) {
@@ -95,8 +112,16 @@ const AgregarAnimal = () => {
                     </select>
                     <input name="raza" placeholder="Raza" onChange={handleChange} />
                     <textarea name="descripcion" placeholder="Descripción" onChange={handleChange} />
-                    <input name="fotoUrl" placeholder="URL de la Foto" onChange={handleChange} />
                     <input name="codigoPostal" placeholder="Código Postal" onChange={handleChange} required />
+                    Agregar Foto: <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        required
+                        style={{ alignSelf: 'center' }}
+                    />
+
+
 
                     <button type="submit" disabled={loading}>
                         {loading ? 'Guardando...' : 'Guardar Mascota'}

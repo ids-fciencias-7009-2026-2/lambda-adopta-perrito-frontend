@@ -118,7 +118,7 @@ const DetalleAnimal = () => {
 
             {animal.fotoUrl && (
                 <img
-                    src={animal.fotoUrl}
+                    src={`http://localhost:8080${animal.fotoUrl}`}
                     alt={`Foto de ${animal.nombre}`}
                     style={{ width: '100%', height: '300px', objectFit: 'cover', borderRadius: '8px', marginBottom: '20px' }}
                 />

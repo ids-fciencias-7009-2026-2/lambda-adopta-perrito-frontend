@@ -10,9 +10,9 @@ const EditarAnimal = () => {
     especie: 'Perro',
     raza: '',
     descripcion: '',
-    fotoUrl: '',
     codigoPostal: ''
   });
+  const [imagen, setImagen] = useState(null);
   const [loading, setLoading] = useState(true);
   const [guardando, setGuardando] = useState(false);
   const [error, setError] = useState('');
@@ -38,7 +38,6 @@ const EditarAnimal = () => {
             especie: data.especie || 'Perro',
             raza: data.raza || '',
             descripcion: data.descripcion || '',
-            fotoUrl: data.fotoUrl || '',
             codigoPostal: data.codigoPostal || ''
           });
         } else {
@@ -58,6 +57,13 @@ const EditarAnimal = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+// Función para capturar el archivo de la nueva imagen
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setImagen(e.target.files[0]);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setGuardando(true);
@@ -65,14 +71,25 @@ const EditarAnimal = () => {
 
     const token = sessionStorage.getItem('token');
 
+    const dataToSend = new FormData();
+    dataToSend.append('nombre', formData.nombre);
+    dataToSend.append('especie', formData.especie);
+    dataToSend.append('raza', formData.raza);
+    dataToSend.append('descripcion', formData.descripcion);
+    dataToSend.append('codigoPostal', formData.codigoPostal);
+
+    // Adjuntamos la nueva foto si el usuario seleccionó una
+    if (imagen) {
+        dataToSend.append('archivoImagen', imagen);
+    }
+
     try {
       const response = await fetch(`http://localhost:8080/animales/${id}/editar`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
+        headers:{
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(formData)
+        body: dataToSend
       });
 
       if (response.ok) {
@@ -135,12 +152,15 @@ const EditarAnimal = () => {
                 onChange={handleChange}
                 rows={4}
             />
-            <input
-                name="fotoUrl"
-                placeholder="URL de la Foto"
-                value={formData.fotoUrl}
-                onChange={handleChange}
-            />
+            <div style={{ margin: '10px 0', fontSize: '14px', color: '#555' }}>
+                          Cambiar Foto (Opcional):
+                          <input
+                              type="file"
+                              accept="image/*"
+                              onChange={handleImageChange}
+                              style={{ display: 'block', margin: '5px auto', alignSelf: 'center' }}
+                          />
+                        </div>
             <input
                 name="codigoPostal"
                 placeholder="Código Postal"
