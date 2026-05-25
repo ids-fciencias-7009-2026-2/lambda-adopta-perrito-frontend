@@ -199,7 +199,7 @@ const BuscarMascotas = () => {
                         <div key={animal.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', minWidth: '200px', maxWidth: '250px' }}>
                             {animal.fotoUrl && (
                                 <img
-                                    src={animal.fotoUrl}
+                                    src={`http://localhost:8080${animal.fotoUrl}`}
                                     alt={`Foto de ${animal.nombre}`}
                                     style={{ width: '100%', height: '180px', objectFit: 'cover', borderRadius: '8px', marginBottom: '10px' }}
                                 />
