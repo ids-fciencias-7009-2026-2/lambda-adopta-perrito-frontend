@@ -42,6 +42,7 @@ const Home = () => {
           <button onClick={() => navigate('/perfil')}>Ver Mi Perfil</button> |
           <button onClick={() => navigate('/buscar')} style={{ marginLeft: '10px' }}>Buscar Mascotas</button> |
           <button onClick={() => navigate('/agregar-animal')} style={{ marginLeft: '10px' }}>Dar en Adopción</button> |
+          <button onClick={() => navigate('/mascotas-desaparecidas')} style={{ marginLeft: '10px' }}>Mascotas Desaparecidas</button> |
           <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
             Cerrar Sesión
           </button>
