@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const Perfil = () => {
     const navigate = useNavigate();
-
     const [usuario, setUsuario] = useState(null);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
@@ -42,40 +42,13 @@ const Perfil = () => {
         fetchUser();
     }, [navigate]);
 
-    // Invalida el token en el servidor y limpia el almacenamiento local
-    const handleLogout = async () => {
-        const token = sessionStorage.getItem('token');
-        try {
-            await fetch('http://localhost:8080/usuarios/logout', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                }
-            });
-        } catch (err) {
-            console.error('Error al procesar el cierre de sesión:', err);
-        } finally {
-            sessionStorage.removeItem('token');
-            navigate('/login');
-        }
-    };
-
     if (loading) {
         return <p style={{ textAlign: 'center', marginTop: '50px' }}>Cargando perfil...</p>;
     }
 
     return (
         <div style={{ padding: '20px', textAlign: 'center' }}>
-            <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
-                <h1>Adopta un Perrito</h1>
-                <nav>
-                    <button onClick={() => navigate('/home')}>Home</button> |
-                    <button onClick={() => navigate('/editar')} style={{ marginLeft: '10px' }}>Editar Datos</button> |
-                    <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
-                        Cerrar Sesión
-                    </button>
-                </nav>
-            </header>
+            <Navbar />
 
             <main style={{ marginTop: '30px' }}>
                 <h2>Mi Perfil</h2>
@@ -95,6 +68,25 @@ const Perfil = () => {
                         <p><strong>Nombre:</strong> {usuario.nombre}</p>
                         <p><strong>Correo Electrónico:</strong> {usuario.email}</p>
                         <p><strong>Código Postal:</strong> {usuario.codigoPostal}</p>
+
+                        {/* --- BOTÓN DE EDITAR AGREGADO AQUÍ --- */}
+                        <button
+                            onClick={() => navigate('/editar')}
+                            style={{
+                                width: '100%',
+                                marginTop: '20px',
+                                backgroundColor: '#FF9800',
+                                color: 'white',
+                                border: 'none',
+                                padding: '12px',
+                                borderRadius: '6px',
+                                cursor: 'pointer',
+                                fontSize: '1rem',
+                                fontWeight: 'bold'
+                            }}
+                        >
+                            ✏️ Editar Mis Datos
+                        </button>
                     </div>
                 )}
             </main>

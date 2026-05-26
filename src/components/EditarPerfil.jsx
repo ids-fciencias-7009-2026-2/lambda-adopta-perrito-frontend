@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const EditarPerfil = () => {
   const navigate = useNavigate();
@@ -134,15 +135,7 @@ const EditarPerfil = () => {
 
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
-      <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
-        <h1>🐾 Adopta un Perrito</h1>
-        <nav>
-          <button onClick={() => navigate('/home')}>Home</button> |
-          <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
-            Cerrar Sesión
-          </button>
-        </nav>
-      </header>
+      <Navbar />
 
       <main style={{ marginTop: '30px' }}>
         <h2>Editar Perfil</h2>

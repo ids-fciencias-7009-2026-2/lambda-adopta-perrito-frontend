@@ -28,60 +28,44 @@ const Home = () => {
     } catch (err) {
       console.error('Error al cerrar sesión en el servidor:', err);
     } finally {
-      sessionStorage.removeItem('token');
-      sessionStorage.removeItem('rol');
+      sessionStorage.clear();
       navigate('/login');
     }
   };
 
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
-        <h1>🐾 Adopta un Perrito</h1>
-        <nav>
-          <button onClick={() => navigate('/perfil')}>Ver Mi Perfil</button> |
-          <button onClick={() => navigate('/buscar')} style={{ marginLeft: '10px' }}>Buscar Mascotas</button> |
-          <button onClick={() => navigate('/agregar-animal')} style={{ marginLeft: '10px' }}>Dar en Adopción</button> |
-          <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
-            Cerrar Sesión
+      <div style={{ padding: '20px', textAlign: 'center', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fafafa' }}>
+
+        <h1 style={{ fontSize: '3.5rem', margin: '0 0 10px 0', color: '#333' }}>🐾 AdoptaPerrito</h1>
+        <p style={{ fontSize: '1.2rem', color: '#666', marginBottom: '40px', maxWidth: '600px' }}>
+          ¡Bienvenido a tu portal! Encuentra a tu nuevo mejor amigo, ayuda a una mascota a encontrar hogar, o reporta si has perdido a la tuya.
+        </p>
+
+        {/* BOTONES CENTRALES GRANDES */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', maxWidth: '800px', width: '100%' }}>
+
+          <button onClick={() => navigate('/perfil')} style={{ padding: '30px', fontSize: '1.5rem', backgroundColor: '#2196F3', color: 'white', border: 'none', borderRadius: '12px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+            <span style={{ fontSize: '3rem' }}>👤</span> Mi Perfil
           </button>
-        </nav>
-      </header>
 
-      <main style={{ marginTop: '30px' }}>
+          <button onClick={() => navigate('/mis-mascotas')} style={{ padding: '30px', fontSize: '1.5rem', backgroundColor: '#9C27B0', color: 'white', border: 'none', borderRadius: '12px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+            <span style={{ fontSize: '3rem' }}>🐕</span> Mis Mascotas
+          </button>
 
-        <div style={{ fontSize: '100px', marginTop: '20px' }}></div>
+          <button onClick={() => navigate('/adoptar')} style={{ padding: '30px', fontSize: '1.5rem', backgroundColor: '#FF9800', color: 'white', border: 'none', borderRadius: '12px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+            <span style={{ fontSize: '3rem' }}>🏡</span> Adoptar
+          </button>
 
-        <h2 style={{ fontSize: '2.5rem' }}>¡Bienvenido, {user?.name}!</h2>
+          <button onClick={() => navigate('/perdidas')} style={{ padding: '30px', fontSize: '1.5rem', backgroundColor: '#F44336', color: 'white', border: 'none', borderRadius: '12px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+            <span style={{ fontSize: '3rem' }}>🔍</span> Mascotas Perdidas
+          </button>
 
-        {/* Descripción corta e intuitiva */}
-        <div style={{ maxWidth: '600px', margin: '20px auto' }}>
-          <p style={{ fontSize: '1.2rem', color: '#555' }}>
-            Bienvenido a tu portal de adopción. Aquí puedes encontrar a tu nuevo mejor amigo
-            o ayudar a una mascota a encontrar un hogar lleno de amor.
-            ¡Explora nuestras mascotas disponibles o publica una para adopción!
-          </p>
         </div>
 
-
-        <div style={{ marginTop: '50px' }}>
-          <button
-            onClick={() => navigate('/buscar')}
-            style={{
-              padding: '15px 40px',
-              fontSize: '1.3rem',
-              cursor: 'pointer',
-              backgroundColor: '#4CAF50',
-              color: 'white',
-              border: 'none',
-              borderRadius: '8px'
-            }}
-          >
-            🔍 Buscar Mascotas
-          </button>
-        </div>
-      </main>
-    </div>
+        <button onClick={handleLogout} style={{ marginTop: '50px', padding: '10px 30px', fontSize: '1rem', backgroundColor: 'transparent', color: '#888', border: '2px solid #ccc', borderRadius: '8px', cursor: 'pointer' }}>
+          Cerrar Sesión
+        </button>
+      </div>
   );
 };
 

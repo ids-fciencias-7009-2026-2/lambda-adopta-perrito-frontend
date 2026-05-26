@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const AgregarAnimal = () => {
     const navigate = useNavigate();
@@ -86,20 +87,9 @@ const AgregarAnimal = () => {
 
     return (
         <div style={{ padding: '20px', textAlign: 'center' }}>
-            {/* ESTE ES EL HEADER QUE AGREGUÉ */}
-            <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
-                <h1>🐾 Adopta un Perrito</h1>
-                <nav>
-                    <button onClick={() => navigate('/home')}>Home</button> |
-                    <button onClick={() => navigate('/perfil')} style={{ marginLeft: '10px' }}>Ver Mi Perfil</button> |
-                    <button onClick={() => navigate('/buscar')} style={{ marginLeft: '10px' }}>Buscar Mascotas</button> |
-                    <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
-                        Cerrar Sesión
-                    </button>
-                </nav>
-            </header>
+            <Navbar />
 
-            {/* AQUÍ COMIENZA TU FORMULARIO ORIGINAL */}
+            {/* Formulario */}
             <div style={{ padding: '20px', maxWidth: '500px', margin: 'auto' }}>
                 <h2 style={{ marginTop: '20px' }}>Agregar Nueva Mascota</h2>
                 {error && <p style={{ color: 'red' }}>{error}</p>}

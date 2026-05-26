@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const EditarAnimal = () => {
   const { id } = useParams();
@@ -113,14 +114,7 @@ const EditarAnimal = () => {
 
   return (
       <div style={{ padding: '20px', textAlign: 'center' }}>
-        <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
-          <h1>🐾 Adopta un Perrito</h1>
-          <nav>
-            <button onClick={() => navigate('/home')}>Home</button> |
-            <button onClick={() => navigate('/buscar')} style={{ marginLeft: '10px' }}>Buscar Mascotas</button> |
-            <button onClick={() => navigate(`/animales/${id}`)} style={{ marginLeft: '10px' }}>Ver Detalle</button>
-          </nav>
-        </header>
+        <Navbar />
 
         <div style={{ maxWidth: '500px', margin: '30px auto' }}>
           <h2>Editar Mascota</h2>
