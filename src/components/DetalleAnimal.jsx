@@ -86,24 +86,22 @@ const DetalleAnimal = () => {
     const handleInteres = async () => {
         const token = sessionStorage.getItem('token');
         try {
-            // CAMBIO: Usamos la ruta /contacto y el método GET
-            const response = await fetch(`http://localhost:8080/animales/${id}/contacto`, {
-                method: 'GET', // Antes decía POST
+            const response = await fetch(`http://localhost:8080/animales/${id}/enviar-interes`, {
+                method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
                 }
             });
 
             if (response.ok) {
-                const data = await response.json();
                 // Esto guarda el correo y hace que aparezca el cuadro verde de éxito
-                setCorreoContacto(data.correo || data.email);
+                setCorreoContacto('enviado');
                 alert('¡Solicitud enviada! El sistema ha registrado tu interés.');
             } else {
                 setError('El servidor rechazó la solicitud (Error ' + response.status + ')');
             }
         } catch (err) {
-            // Aquí es donde caía antes
             setError('No se pudo conectar con el servidor. Verifica que Spring Boot esté corriendo.');
         }
     };
