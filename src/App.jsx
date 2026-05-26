@@ -9,6 +9,8 @@ import DetalleAnimal from './components/DetalleAnimal';
 import AgregarAnimal from './components/AgregarAnimal';
 import EditarAnimal from './components/EditarAnimal';
 import BuscarMascotasPerdidas from './components/BuscarMascotasPerdidas';
+import DetalleMascotaPerdida from './components/DetalleMascotaPerdida';
+import ReportarExtravio from './components/ReportarExtravio';
 
 function App() {
   return (
