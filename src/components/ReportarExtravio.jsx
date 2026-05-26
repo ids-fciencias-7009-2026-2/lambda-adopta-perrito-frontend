@@ -12,15 +12,22 @@ const ReportarExtravio = () => {
         descripcion: '',
         zonaDesaparicion: '',
         fechaDesaparicion: '',
-        telefonoContacto: '',
-        imagenUrl: '' 
+        telefonoContacto: ''
     });
+    const [foto, setFoto] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+
+    // Maneja la selección del archivo para la foto
+    const handleFileChange = (e) => {
+            if (e.target.files && e.target.files[0]) {
+                setFoto(e.target.files[0]);
+            }
+        };
 
     const handleLogout = async () => {
         const token = sessionStorage.getItem('token');
@@ -43,24 +50,31 @@ const ReportarExtravio = () => {
         setLoading(true);
         setError('');
 
+        const token = sessionStorage.getItem('token');
+        const data = new FormData();
         
-        const payload = {
-            ...formData,
-            edad: formData.edad ? parseInt(formData.edad) : null,
-            raza: formData.raza || null,
-            descripcion: formData.descripcion || null,
-            color: formData.color || null,
-            imagenUrl: formData.imagenUrl || null
-        };
+        data.append('nombre', formData.nombre);
+        data.append('especie', formData.especie);
+        data.append('zonaDesaparicion', formData.zonaDesaparicion);
+        data.append('fechaDesaparicion', formData.fechaDesaparicion);
+        data.append('telefonoContacto', formData.telefonoContacto);
+
+        if (formData.raza) data.append('raza', formData.raza);
+        if (formData.edad) data.append('edad', parseInt(formData.edad));
+        if (formData.color) data.append('color', formData.color);
+        if (formData.descripcion) data.append('descripcion', formData.descripcion);
+        if (foto) {
+            data.append('foto', foto);
+        }
 
         try {
             
             const response = await fetch('http://localhost:8080/mascotas-desaparecidas', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify(payload)
+                body: data
             });
 
             if (response.ok) {
@@ -114,7 +128,16 @@ const ReportarExtravio = () => {
                     </div>
 
                     <input name="telefonoContacto" type="tel" placeholder="Teléfono de contacto (Ej. 5512345678)" onChange={handleChange} required style={{ padding: '8px' }} />
-                    <input name="imagenUrl" placeholder="URL de la foto (Opcional)" onChange={handleChange} style={{ padding: '8px' }} />
+
+                    <div style={{ textAlign: 'left', fontSize: '14px', marginTop: '5px' }}>
+                        <label style={{ fontWeight: 'bold' }}>Sube una foto de la mascota (Opcional):</label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                            style={{ display: 'block', marginTop: '5px' }}
+                        />
+                    </div>
 
                     <button type="submit" disabled={loading} style={{ padding: '10px', backgroundColor: '#f44336', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '10px' }}>
                         {loading ? 'Guardando reporte...' : 'Publicar Reporte de Extravío'}
