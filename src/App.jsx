@@ -8,6 +8,7 @@ import BuscarMascotas from './components/BuscarMascotas';
 import DetalleAnimal from './components/DetalleAnimal';
 import AgregarAnimal from './components/AgregarAnimal';
 import EditarAnimal from './components/EditarAnimal';
+import BuscarMascotasPerdidas from './components/BuscarMascotasPerdidas';
 
 function App() {
   return (
@@ -41,6 +42,11 @@ function App() {
 
         {/* Redirección por defecto: si entran a la raíz (/), mandarlos al login */}
         <Route path="*" element={<Navigate to="/login" replace />} />
+
+        <Route path="/mascotas-desaparecidas" element={<BuscarMascotasPerdidas />} />
+
+        <Route path="/reportar-extravio" element={<ReportarExtravio />} />
+        <Route path="/mascotas-desaparecidas/:id" element={<DetalleMascotaPerdida />} />
 
       </Routes>
     </Router>
