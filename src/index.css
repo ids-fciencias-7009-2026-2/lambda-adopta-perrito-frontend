@@ -51,7 +51,43 @@
 }
 
 body {
-  margin: 0;
+  background-color: #FFFBF7;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+p {
+    color: #431407
+}
+
+.tarjeta{
+    background-color: #B09574;
+}
+
+.btn-principal {
+  background-color: #6E5232;
+  color: white;
+  padding: 12px 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.btn-principal:hover {
+  background-color: #574125;
+}
+
+.btn-logout {
+  background-color: red;
+  margin-left: 10px;
+}
+
+.btn-logout:hover {
+  background-color: #b91c1c;
 }
 
 #root {
@@ -69,8 +105,8 @@ body {
 h1,
 h2 {
   font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+  font-weight: bold;
+  color: '#574125';
 }
 
 h1 {
@@ -83,6 +119,7 @@ h1 {
   }
 }
 h2 {
+  color: #F97316;
   font-size: 24px;
   line-height: 118%;
   letter-spacing: -0.24px;
@@ -94,6 +131,8 @@ h2 {
 p {
   margin: 0;
 }
+
+
 
 code,
 .counter {

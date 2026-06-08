@@ -39,11 +39,11 @@ const Home = () => {
       <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
         <h1>🐾 Adopta un Perrito</h1>
         <nav>
-          <button onClick={() => navigate('/perfil')}>Ver Mi Perfil</button> |
-          <button onClick={() => navigate('/buscar')} style={{ marginLeft: '10px' }}>Buscar Mascotas</button> |
-          <button onClick={() => navigate('/agregar-animal')} style={{ marginLeft: '10px' }}>Dar en Adopción</button> |
-          <button onClick={() => navigate('/mascotas-desaparecidas')} style={{ marginLeft: '10px' }}>Mascotas Desaparecidas</button> |
-          <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
+          <button className="btn-principal" onClick={() => navigate('/perfil')}>Ver Mi Perfil</button> |
+          <button className="btn-principal" onClick={() => navigate('/buscar')} style={{ marginLeft: '10px' }}>Buscar Mascotas</button> |
+          <button className="btn-principal" onClick={() => navigate('/agregar-animal')} style={{ marginLeft: '10px' }}>Dar en Adopción</button> |
+          <button className="btn-principal" onClick={() => navigate('/mascotas-desaparecidas')} style={{ marginLeft: '10px' }}>Mascotas Desaparecidas</button> |
+          <button className="btn-principal btn-logout" onClick={handleLogout} style={{ marginLeft: '10px', color: 'white' }}>
             Cerrar Sesión
           </button>
         </nav>
@@ -53,7 +53,7 @@ const Home = () => {
 
         <div style={{ fontSize: '100px', marginTop: '20px' }}></div>
 
-        <h2 style={{ fontSize: '2.5rem' }}>¡Bienvenido, {user?.name}!</h2>
+        <h2 style={{ fontSize: '2.5rem'}}>¡Bienvenido, {user?.name}!</h2>
 
         {/* Descripción corta e intuitiva */}
         <div style={{ maxWidth: '600px', margin: '20px auto' }}>

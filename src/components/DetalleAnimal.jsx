@@ -110,7 +110,7 @@ const DetalleAnimal = () => {
 
     return (
         <div style={{ maxWidth: '500px', margin: '40px auto', textAlign: 'center', padding: '20px' }}>
-            <button onClick={() => navigate('/buscar')} style={{ marginBottom: '20px', cursor: 'pointer' }}>
+            <button className="btn-principal" onClick={() => navigate('/buscar')} style={{ marginBottom: '20px', cursor: 'pointer', fontSize:'1rem' }}>
                 ← Volver a búsqueda
             </button>
 

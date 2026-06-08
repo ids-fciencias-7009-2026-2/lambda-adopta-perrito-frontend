@@ -90,16 +90,16 @@ const AgregarAnimal = () => {
             <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
                 <h1>🐾 Adopta un Perrito</h1>
                 <nav>
-                    <button onClick={() => navigate('/home')}>Home</button> |
-                    <button onClick={() => navigate('/perfil')} style={{ marginLeft: '10px' }}>Ver Mi Perfil</button> |
-                    <button onClick={() => navigate('/buscar')} style={{ marginLeft: '10px' }}>Buscar Mascotas</button> |
-                    <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
+                    <button className="btn-principal" onClick={() => navigate('/home')}>Home</button> |
+                    <button className="btn-principal" onClick={() => navigate('/perfil')} style={{ marginLeft: '10px' }}>Ver Mi Perfil</button> |
+                    <button className="btn-principal" onClick={() => navigate('/buscar')} style={{ marginLeft: '10px' }}>Buscar Mascotas</button> |
+                    <button className="btn-principal btn-logout" onClick={handleLogout} style={{ marginLeft: '10px' }}>
                         Cerrar Sesión
                     </button>
                 </nav>
             </header>
 
-            {/* AQUÍ COMIENZA TU FORMULARIO ORIGINAL */}
+
             <div style={{ padding: '20px', maxWidth: '500px', margin: 'auto' }}>
                 <h2 style={{ marginTop: '20px' }}>Agregar Nueva Mascota</h2>
                 {error && <p style={{ color: 'red' }}>{error}</p>}

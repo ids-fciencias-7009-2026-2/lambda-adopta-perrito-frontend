@@ -69,12 +69,13 @@ const DetalleMascotaPerdida = () => {
 
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: 'auto', textAlign: 'center' }}>
-            <button onClick={() => navigate('/mascotas-desaparecidas')} style={{ float: 'left', marginBottom: '20px', cursor: 'pointer' }}>
+            <button className="btn-principal" onClick={() => navigate('/mascotas-desaparecidas')} style={{ marginBottom: '20px', cursor: 'pointer', fontSize: '1rem' }}>
                 ← Volver a la galería
             </button>
             <div style={{ clear: 'both' }}></div>
 
-            <h1 style={{ color: '#f44336' }}>🚨 Mascota Extraviada: {mascota.nombre}</h1>
+            <h1 style={{ color: '#f44336', lineHeight:'1'}}>🚨 Mascota Extraviada: <br />{
+                mascota.nombre}</h1>
 
             <img
                 src={mascota.imagenUrl ? `http://localhost:8080${mascota.imagenUrl}` : 'https://via.placeholder.com/300'}
@@ -82,7 +83,7 @@ const DetalleMascotaPerdida = () => {
                 style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: '8px', margin: '20px 0' }}
             />
 
-            <div style={{ textAlign: 'left', backgroundColor: '#f9f9f9', padding: '20px', borderRadius: '8px', lineHeight: '1.6' }}>
+            <div style={{ textAlign: 'center', backgroundColor: '#f9f9f9', padding: '20px', borderRadius: '8px', lineHeight: '1.6' }}>
                 <p><strong>Especie:</strong> {mascota.especie}</p>
                 <p><strong>Raza:</strong> {mascota.raza || 'Mestizo / No especificada'}</p>
                 <p><strong>Edad aproximada:</strong> {mascota.edad !== null ? `${mascota.edad} años` : 'No especificada'}</p>
