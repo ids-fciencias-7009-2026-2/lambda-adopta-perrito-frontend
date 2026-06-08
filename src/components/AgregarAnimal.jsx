@@ -105,14 +105,14 @@ const AgregarAnimal = () => {
                 {error && <p style={{ color: 'red' }}>{error}</p>}
 
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    <input name="nombre" placeholder="Nombre" onChange={handleChange} required />
-                    <select name="especie" onChange={handleChange}>
+                    <input className="input-class" name="nombre" placeholder="Nombre" onChange={handleChange} required />
+                    <select className="input-class" name="especie" onChange={handleChange}>
                         <option value="Perro">Perro</option>
                         <option value="Gato">Gato</option>
                     </select>
-                    <input name="raza" placeholder="Raza" onChange={handleChange} />
-                    <textarea name="descripcion" placeholder="Descripción" onChange={handleChange} />
-                    <input name="codigoPostal" placeholder="Código Postal" onChange={handleChange} required />
+                    <input className="input-class" name="raza" placeholder="Raza" onChange={handleChange} />
+                    <textarea className="input-class" name="descripcion" placeholder="Descripción" onChange={handleChange} />
+                    <input className="input-class" name="codigoPostal" placeholder="Código Postal" onChange={handleChange} required />
                     Agregar Foto: <input
                         type="file"
                         accept="image/*"
@@ -123,10 +123,10 @@ const AgregarAnimal = () => {
 
 
 
-                    <button type="submit" disabled={loading}>
+                    <button className="btn-principal" type="submit" disabled={loading}>
                         {loading ? 'Guardando...' : 'Guardar Mascota'}
                     </button>
-                    <button type="button" onClick={() => navigate('/home')}>Cancelar</button>
+                    <button className="btn-principal" type="button" onClick={() => navigate('/home')}>Cancelar</button>
                 </form>
             </div>
         </div>

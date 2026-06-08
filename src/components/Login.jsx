@@ -44,25 +44,25 @@ const Login = () => {
   };
 
   return (
-      <div style={{ maxWidth: '400px', margin: '50px auto', textAlign: 'center' }}>
+      <div style={{ maxWidth: '400px', margin: '50px auto', textAlign: 'center', lineHeight: '1' }}>
         <h1>Adopta un Perrito 🐾</h1>
         <h3>Iniciar Sesión</h3>
         <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <input
+          <input className="input-class"
               type="email"
               placeholder="Tu correo electrónico"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
           />
-          <input
+          <input className="input-class"
               type="password"
               placeholder="Tu contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
           />
-          <button type="submit" style={{ cursor: 'pointer', padding: '10px' }}>
+          <button className="btn-principal" type="submit" style={{ cursor: 'pointer', padding: '10px' }}>
             Ingresar
           </button>
         </form>
@@ -71,7 +71,7 @@ const Login = () => {
           ¿No tienes cuenta?{' '}
           <span
               onClick={() => navigate('/register')}
-              style={{ color: 'cyan', cursor: 'pointer', textDecoration: 'underline' }}
+              style={{ color: 'orange', cursor: 'pointer', textDecoration: 'underline' }}
           >
           Regístrate aquí
         </span>

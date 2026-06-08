@@ -158,7 +158,7 @@ const EditarPerfil = () => {
             margin: '20px auto'
           }}
         >
-          <input
+          <input className="input-class"
             type="text"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
@@ -166,7 +166,7 @@ const EditarPerfil = () => {
             required
           />
 
-          <input
+          <input className="input-class"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -174,7 +174,7 @@ const EditarPerfil = () => {
             required
           />
 
-          <input
+          <input className="input-class"
             type="text"
             value={codigoPostal}
             onChange={(e) => setCodigoPostal(e.target.value)}
@@ -182,7 +182,7 @@ const EditarPerfil = () => {
             required
           />
 
-          <button type="submit">Guardar Datos</button>
+          <button className="btn-principal" type="submit">Guardar Datos</button>
         </form>
 
         {/* FORM CONTRASEÑA */}
@@ -198,21 +198,21 @@ const EditarPerfil = () => {
         >
           <p><strong>Cambiar Contraseña</strong></p>
 
-          <input
+          <input className="input-class"
             type="password"
             placeholder="Nueva contraseña"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <input
+          <input className="input-class"
             type="password"
             placeholder="Confirmar contraseña"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
 
-          <button type="submit">Cambiar Contraseña</button>
+          <button className="btn-principal" type="submit">Cambiar Contraseña</button>
         </form>
 
         {mensaje && <p style={{ color: 'green' }}>{mensaje}</p>}

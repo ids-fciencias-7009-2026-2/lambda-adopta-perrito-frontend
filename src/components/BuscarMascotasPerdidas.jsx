@@ -96,6 +96,7 @@ const BuscarMascotasPerdidas = () => {
                 <h1>🐾 Mascotas Desaparecidas</h1>
                 <nav>
                     <button className="btn-principal" onClick={() => navigate('/home')}>Home</button> |
+                    <button className="btn-principal" onClick={() => navigate('/perfil')} style={{ marginLeft: '10px' }}>Ver Mi Perfil</button> |
                     <button className="btn-principal" onClick={() => navigate('/buscar')} style={{ marginLeft: '10px' }}>Ver Adopciones</button> |
                     <button className="btn-principal" onClick={() => navigate('/reportar-extravio')} style={{ marginLeft: '10px' }}>Reportar Extravío</button> |
                     <button className="btn-principal btn-logout" onClick={handleLogout} style={{ marginLeft: '10px' }}>

@@ -152,6 +152,7 @@ const BuscarMascotas = () => {
                     <button className="btn-principal" onClick={() => navigate('/home')}>Home</button> |
                     <button className="btn-principal" onClick={() => navigate('/perfil')} style={{ marginLeft: '10px' }}>Ver Mi Perfil</button> |
                     <button className="btn-principal" onClick={() => navigate('/agregar-animal')} style={{ marginLeft: '10px' }}>Dar en Adopción</button> |
+                    <button className="btn-principal" onClick={() => navigate('/mascotas-desaparecidas')} style={{ marginLeft: '10px' }}>Mascotas Desaparecidas</button> |
                     <button className="btn-principal btn-logout" onClick={handleLogout} style={{ marginLeft: '10px'}}>
                         Cerrar Sesión
                     </button>
