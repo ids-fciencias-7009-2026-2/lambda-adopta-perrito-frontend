@@ -87,9 +87,9 @@ const Perfil = () => {
             <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
                 <h1>🐾 Adopta un Perrito</h1>
                 <nav>
-                    <button onClick={() => navigate('/home')}>Home</button> |
-                    <button onClick={() => navigate('/editar')} style={{ marginLeft: '10px' }}>Editar Datos</button> |
-                    <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
+                    <button className="btn-principal" onClick={() => navigate('/home')}>Home</button> |
+                    <button className="btn-principal" onClick={() => navigate('/editar')} style={{ marginLeft: '10px' }}>Editar Datos</button> |
+                    <button className="btn-principal btn-logout" onClick={handleLogout} style={{ marginLeft: '10px'}}>
                         Cerrar Sesión
                     </button>
                 </nav>
@@ -108,7 +108,7 @@ const Perfil = () => {
                         maxWidth: '400px',
                         margin: '20px auto',
                         textAlign: 'left',
-                        backgroundColor: '#f9f9f9'
+                        backgroundColor: '#B09574'
                     }}>
                         <p><strong>Nombre:</strong> {usuario.nombre}</p>
                         <p><strong>Correo Electrónico:</strong> {usuario.email}</p>
@@ -124,7 +124,7 @@ const Perfil = () => {
                 ) : (
                     <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px', flexWrap: 'wrap' }}>
                         {misAdopciones.map((animal) => (
-                            <div key={animal.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', minWidth: '200px', maxWidth: '250px' }}>
+                            <div className="tarjeta" key={animal.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', minWidth: '200px', maxWidth: '250px' }}>
                                 <img
                                     src={animal.fotoUrl ? `http://localhost:8080${animal.fotoUrl}` : 'https://via.placeholder.com/150'}
                                     alt={`Foto de ${animal.nombre}`}
@@ -160,7 +160,7 @@ const Perfil = () => {
                 ) : (
                     <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px', flexWrap: 'wrap' }}>
                         {misPerdidas.map((mascota) => (
-                            <div key={mascota.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', minWidth: '200px', maxWidth: '250px' }}>
+                            <div className="tarjeta" key={mascota.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', minWidth: '200px', maxWidth: '250px' }}>
                                 <img
                                     src={mascota.imagenUrl ? `http://localhost:8080${mascota.imagenUrl}` : 'https://via.placeholder.com/180'}
                                     alt={`Foto de ${mascota.nombre}`}

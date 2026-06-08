@@ -137,8 +137,8 @@ const EditarPerfil = () => {
       <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
         <h1>🐾 Adopta un Perrito</h1>
         <nav>
-          <button onClick={() => navigate('/home')}>Home</button> |
-          <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
+          <button className="btn-principal" onClick={() => navigate('/home')}>Home</button> |
+          <button className="btn-principal btn-logout" onClick={handleLogout} style={{ marginLeft: '10px'}}>
             Cerrar Sesión
           </button>
         </nav>

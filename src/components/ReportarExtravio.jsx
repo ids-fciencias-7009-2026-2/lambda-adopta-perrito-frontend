@@ -95,9 +95,9 @@ const ReportarExtravio = () => {
             <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
                 <h1>🐾 Mascotas Desaparecidas</h1>
                 <nav>
-                    <button onClick={() => navigate('/home')}>Home</button> |
-                    <button onClick={() => navigate('/mascotas-desaparecidas')} style={{ marginLeft: '10px' }}>Ver Mascotas Perdidas</button> |
-                    <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
+                    <button className="btn-principal" onClick={() => navigate('/home')}>Home</button> |
+                    <button className="btn-principal" onClick={() => navigate('/mascotas-desaparecidas')} style={{ marginLeft: '10px' }}>Ver Mascotas Perdidas</button> |
+                    <button className="btn-principal btn-logout" onClick={handleLogout} style={{ marginLeft: '10px' }}>
                         Cerrar Sesión
                     </button>
                 </nav>

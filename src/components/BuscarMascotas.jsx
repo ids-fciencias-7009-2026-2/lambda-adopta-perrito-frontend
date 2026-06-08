@@ -149,10 +149,10 @@ const BuscarMascotas = () => {
             <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
                 <h1>🐾 Adopta un Perrito</h1>
                 <nav>
-                    <button onClick={() => navigate('/home')}>Home</button> |
-                    <button onClick={() => navigate('/perfil')} style={{ marginLeft: '10px' }}>Ver Mi Perfil</button> |
-                    <button onClick={() => navigate('/agregar-animal')} style={{ marginLeft: '10px' }}>Dar en Adopción</button> |
-                    <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
+                    <button className="btn-principal" onClick={() => navigate('/home')}>Home</button> |
+                    <button className="btn-principal" onClick={() => navigate('/perfil')} style={{ marginLeft: '10px' }}>Ver Mi Perfil</button> |
+                    <button className="btn-principal" onClick={() => navigate('/agregar-animal')} style={{ marginLeft: '10px' }}>Dar en Adopción</button> |
+                    <button className="btn-principal btn-logout" onClick={handleLogout} style={{ marginLeft: '10px'}}>
                         Cerrar Sesión
                     </button>
                 </nav>
@@ -181,7 +181,7 @@ const BuscarMascotas = () => {
                         onChange={(e) => setCodigoPostal(e.target.value)}
                         style={{ padding: '8px' }}
                     />
-                    <button type="submit" disabled={loading} style={{ padding: '8px 15px', cursor: 'pointer' }}>
+                    <button className="btn-principal" type="submit" disabled={loading} style={{ padding: '8px 15px', cursor: 'pointer', fontSize: '0.8rem' }}>
                         {loading ? 'Buscando...' : 'Buscar'}
                     </button>
                 </form>
@@ -196,7 +196,7 @@ const BuscarMascotas = () => {
 
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '30px', flexWrap: 'wrap' }}>
                     {animales.map((animal) => (
-                        <div key={animal.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', minWidth: '200px', maxWidth: '250px' }}>
+                        <div className="tarjeta" key={animal.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', minWidth: '200px', maxWidth: '250px' }}>
                             {animal.fotoUrl && (
                                 <img
                                     src={`http://localhost:8080${animal.fotoUrl}`}
@@ -210,7 +210,7 @@ const BuscarMascotas = () => {
                             <p style={{ margin: '5px 0' }}><strong>CP:</strong> {animal.codigoPostal}</p>
                             <p style={{ margin: '5px 0' }}>
                                 <strong>Estado:</strong>{' '}
-                                <span style={{ color: animal.estado === 'ADOPTADO' ? 'green' : 'orange' }}>
+                                <span style={{ color: animal.estado === 'ADOPTADO' ? 'green' : '#F2E668' }}>
                                     {animal.estado}
                                 </span>
                             </p>

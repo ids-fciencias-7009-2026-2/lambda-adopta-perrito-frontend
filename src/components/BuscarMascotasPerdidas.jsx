@@ -95,10 +95,10 @@ const BuscarMascotasPerdidas = () => {
             <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
                 <h1>🐾 Mascotas Desaparecidas</h1>
                 <nav>
-                    <button onClick={() => navigate('/home')}>Home</button> |
-                    <button onClick={() => navigate('/buscar')} style={{ marginLeft: '10px' }}>Ver Adopciones</button> |
-                    <button onClick={() => navigate('/reportar-extravio')} style={{ marginLeft: '10px' }}>Reportar Extravío</button> |
-                    <button onClick={handleLogout} style={{ marginLeft: '10px', color: 'red' }}>
+                    <button className="btn-principal" onClick={() => navigate('/home')}>Home</button> |
+                    <button className="btn-principal" onClick={() => navigate('/buscar')} style={{ marginLeft: '10px' }}>Ver Adopciones</button> |
+                    <button className="btn-principal" onClick={() => navigate('/reportar-extravio')} style={{ marginLeft: '10px' }}>Reportar Extravío</button> |
+                    <button className="btn-principal btn-logout" onClick={handleLogout} style={{ marginLeft: '10px' }}>
                         Cerrar Sesión
                     </button>
                 </nav>
@@ -115,7 +115,7 @@ const BuscarMascotasPerdidas = () => {
                         onChange={(e) => setZona(e.target.value)}
                         style={{ padding: '8px', width: '250px' }}
                     />
-                    <button type="submit" disabled={loading} style={{ padding: '8px 15px', cursor: 'pointer' }}>
+                    <button className="btn-principal" type="submit" disabled={loading} style={{ padding: '8px 15px', cursor: 'pointer', fontSize: '0.85rem' }}>
                         {loading ? 'Buscando...' : 'Buscar'}
                     </button>
                 </form>
@@ -131,7 +131,7 @@ const BuscarMascotasPerdidas = () => {
                 {/* Grid de Tarjetas adaptado al DTO de MascotaDesaparecida */}
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '30px', flexWrap: 'wrap' }}>
                     {mascotas.map((mascota) => (
-                        <div key={mascota.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', minWidth: '200px', maxWidth: '250px' }}>
+                        <div className="tarjeta" key={mascota.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', minWidth: '200px', maxWidth: '250px' }}>
                             <img
                                 src={mascota.imagenUrl ? `http://localhost:8080${mascota.imagenUrl}` : 'https://via.placeholder.com/180'}
                                 alt={`Foto de ${mascota.nombre}`}
@@ -143,7 +143,7 @@ const BuscarMascotasPerdidas = () => {
                             <p style={{ margin: '5px 0' }}><strong>Zona:</strong> {mascota.zonaDesaparicion}</p>
                             <p style={{ margin: '5px 0' }}>
                                 <strong>Estado:</strong>{' '}
-                                <span style={{ color: mascota.encontrada ? 'green' : 'orange' }}>
+                                <span style={{ color: mascota.encontrada ? 'green' : 'red' }}>
                                     {mascota.encontrada ? 'RESCATADA / ENCONTRADA' : 'EXTRAVIADA'}
                                 </span>
                             </p>
