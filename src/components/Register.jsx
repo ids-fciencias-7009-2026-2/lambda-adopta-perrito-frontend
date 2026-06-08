@@ -44,7 +44,7 @@ const Register = () => {
       <h1>Registro 🐾</h1>
 
       <form onSubmit={handleRegister} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        <input
+        <input className="input-class"
           type="text"
           placeholder="Nombre"
           value={nombre}
@@ -52,7 +52,7 @@ const Register = () => {
           required
         />
 
-        <input
+        <input className="input-class"
           type="email"
           placeholder="Correo"
           value={email}
@@ -60,7 +60,7 @@ const Register = () => {
           required
         />
 
-        <input
+        <input className="input-class"
           type="password"
           placeholder="Contraseña"
           value={password}
@@ -68,7 +68,7 @@ const Register = () => {
           required
         />
 
-        <input
+        <input className="input-class"
           type="text"
           placeholder="Código Postal"
           value={codigoPostal}
