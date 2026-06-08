@@ -76,7 +76,7 @@ const Register = () => {
           required
         />
 
-        <button type="submit" style={{ padding: '10px', cursor: 'pointer' }}>
+        <button className="btn-principal" type="submit" style={{ padding: '10px', cursor: 'pointer' }}>
           Registrarse
         </button>
       </form>

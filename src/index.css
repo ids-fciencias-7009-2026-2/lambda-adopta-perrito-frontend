@@ -64,6 +64,20 @@ p {
     background-color: #B09574;
 }
 
+
+.input-class {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  color: #334155;
+  background-color: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
 .btn-principal {
   background-color: #6E5232;
   color: white;

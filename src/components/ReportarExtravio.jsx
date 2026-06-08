@@ -96,6 +96,7 @@ const ReportarExtravio = () => {
                 <h1>🐾 Mascotas Desaparecidas</h1>
                 <nav>
                     <button className="btn-principal" onClick={() => navigate('/home')}>Home</button> |
+                    <button className="btn-principal" onClick={() => navigate('/perfil')} style={{ marginLeft: '10px' }}>Ver Mi Perfil</button> |
                     <button className="btn-principal" onClick={() => navigate('/mascotas-desaparecidas')} style={{ marginLeft: '10px' }}>Ver Mascotas Perdidas</button> |
                     <button className="btn-principal btn-logout" onClick={handleLogout} style={{ marginLeft: '10px' }}>
                         Cerrar Sesión
@@ -108,26 +109,26 @@ const ReportarExtravio = () => {
                 {error && <p style={{ color: 'red' }}>{error}</p>}
 
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    <input name="nombre" placeholder="Nombre de la mascota" onChange={handleChange} required style={{ padding: '8px' }} />
+                    <input className="input-class" name="nombre" placeholder="Nombre de la mascota" onChange={handleChange} required style={{ padding: '8px' }} />
                     
-                    <select name="especie" onChange={handleChange} style={{ padding: '8px' }}>
+                    <select className="input-class" name="especie" onChange={handleChange} style={{ padding: '8px' }}>
                         <option value="Perro">Perro</option>
                         <option value="Gato">Gato</option>
                     </select>
 
-                    <input name="raza" placeholder="Raza (Opcional)" onChange={handleChange} style={{ padding: '8px' }} />
-                    <input name="edad" type="number" placeholder="Edad aproximada (Opcional)" onChange={handleChange} style={{ padding: '8px' }} />
-                    <input name="color" placeholder="Color / Rasgos particulares (Opcional)" onChange={handleChange} style={{ padding: '8px' }} />
-                    <textarea name="descripcion" placeholder="Descripción de la situación" onChange={handleChange} rows={3} style={{ padding: '8px' }} />
+                    <input className="input-class" name="raza" placeholder="Raza (Opcional)" onChange={handleChange} style={{ padding: '8px' }} />
+                    <input className="input-class" name="edad" type="number" placeholder="Edad aproximada (Opcional)" onChange={handleChange} style={{ padding: '8px' }} />
+                    <input className="input-class" name="color" placeholder="Color / Rasgos particulares (Opcional)" onChange={handleChange} style={{ padding: '8px' }} />
+                    <textarea className="input-class" name="descripcion" placeholder="Descripción de la situación" onChange={handleChange} rows={3} style={{ padding: '8px' }} />
                     
-                    <input name="zonaDesaparicion" placeholder="¿En qué zona/alcaldía se perdió? (Ej. Coyoacán)" onChange={handleChange} required style={{ padding: '8px' }} />
+                    <input className="input-class" name="zonaDesaparicion" placeholder="¿En qué zona/alcaldía se perdió? (Ej. Coyoacán)" onChange={handleChange} required style={{ padding: '8px' }} />
                     
                     <div style={{ textAlign: 'left', fontSize: '14px', color: '#555' }}>
                         Fecha de desaparición:
-                        <input name="fechaDesaparicion" type="date" onChange={handleChange} required style={{ display: 'block', width: '100%', padding: '8px', marginTop: '5px' }} />
+                        <input className="input-class" name="fechaDesaparicion" type="date" onChange={handleChange} required style={{ display: 'block', width: '100%', padding: '8px', marginTop: '5px' }} />
                     </div>
 
-                    <input name="telefonoContacto" type="tel" placeholder="Teléfono de contacto (Ej. 5512345678)" onChange={handleChange} required style={{ padding: '8px' }} />
+                    <input className="input-class" name="telefonoContacto" type="tel" placeholder="Teléfono de contacto (Ej. 5512345678)" onChange={handleChange} required style={{ padding: '8px' }} />
 
                     <div style={{ textAlign: 'left', fontSize: '14px', marginTop: '5px' }}>
                         <label style={{ fontWeight: 'bold' }}>Sube una foto de la mascota (Opcional):</label>
@@ -139,10 +140,10 @@ const ReportarExtravio = () => {
                         />
                     </div>
 
-                    <button type="submit" disabled={loading} style={{ padding: '10px', backgroundColor: '#f44336', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '10px' }}>
+                    <button className="btn-principal btn-logout" type="submit" disabled={loading} style={{ padding: '10px', backgroundColor: '#f44336', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '10px' }}>
                         {loading ? 'Guardando reporte...' : 'Publicar Reporte de Extravío'}
                     </button>
-                    <button type="button" onClick={() => navigate('/mascotas-desaparecidas')} style={{ padding: '10px', cursor: 'pointer', borderRadius: '4px' }}>
+                    <button className="btn-principal" type="button" onClick={() => navigate('/mascotas-desaparecidas')} style={{ padding: '10px', cursor: 'pointer', borderRadius: '4px' }}>
                         Cancelar
                     </button>
                 </form>
